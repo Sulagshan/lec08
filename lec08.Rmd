@@ -96,7 +96,7 @@ print(xtable(gas_joint, digits=3), add.to.row=addtorow, comment=FALSE,
       include.colnames = FALSE)
 ```
 
-\pause e.g. the probability that a randomly selected pipe has diamter $X=1.5$ and pressure $Y=0.5$ is:
+\pause e.g. the probability that a randomly selected pipe has diameter $X=1.5$ and pressure $Y=0.5$ is:
 $$P(X = 1.5, Y = 0.5) = 0.1$$
 
 ## joint pmf properties; joint density
@@ -104,7 +104,7 @@ $$P(X = 1.5, Y = 0.5) = 0.1$$
 A joint pmf is still just a pmf. It must be non-negative, and its positive values must add up to 1. 
 
 \pause $(X,Y)$ are (jointly) continuous if they have a joint density $f$ such that:
-$$P(a < X < b, c < Y < d) = \int\limits_a^b\int\limits_c^d f(x,y)\,dxdy$$
+$$P(a < X < b, c < Y < d) = \int\limits_c^d\int\limits_a^b f(x,y)\,dxdy$$
 
 \pause A joint density also must be non-negative and integrate to 1 over all $\mathbb{R}^2$.
 
@@ -116,7 +116,7 @@ $$f(x,y) \begin{cases}2e^{-x-2y} &: x > 0, y > 0\\
 0 &: \text{otherwise}\end{cases}$$
 
 \pause Is this actually a valid joint density? It is non-negative, and:
-$$\iint\limits_\mathbb{R^2} f(x,y) = \int\limits_0^\infty\int\limits_0^\infty 2e^{-x-2y}\,dxdy = \int\limits_0^\infty e^{-x}\,dx \int\limits_0^\infty 2e^{-2y}\,dy = 1$$
+$$\iint\limits_{\mathbb{R}^2} f(x,y)\,dxdy = \int\limits_0^\infty\int\limits_0^\infty 2e^{-x-2y}\,dxdy = \int\limits_0^\infty e^{-x}\,dx \int\limits_0^\infty 2e^{-2y}\,dy = 1$$
 
 ## joint density example - II
 
@@ -177,6 +177,8 @@ $$\iint\limits_{y > 1} f(x,y)\,dxdy
 \onslide<3->{=\int\limits_1^\infty 2e^{-2y}\,dy}
 \onslide<4->{=e^{-2}}$$
 
+\pause But in the end, the calculation only ever involved $2e^{-2y}$ once $x$ was "integrated out."
+
 ## marginal density
 
 Given the joint density $f(x,y)$ for $X$ and $Y$, the marginal density for $X$ is:
@@ -195,8 +197,8 @@ $$f(x,y) = \begin{cases}
 
 The marginal density for $X$ will be 0 outside $x \in (0,1)$. Otherwise:
 \begin{align*}\f{X}(x) &= \int\limits_{-\infty}^\infty f(x,y)\,dy\\
-\onslide<2->{&= \int\limits_0^x 2\,dy\\}
-\onslide<3->{&= 2x}
+\onslide<2->{&= \int\limits_0^{1-x} 2\,dy\\}
+\onslide<3->{&= 2(1-x)}
 \end{align*}
 
 ## conditional distributions
@@ -248,7 +250,7 @@ $$f(x,y) = \begin{cases}
 \end{cases}$$
 The marginal density for $X$ was found to be $\f{X}(x) = 2x$ for $0 < x < 1$.
 
-\pause The condtional density of $Y$ given $X=0.5$ will be 0 when $y$ is outside $(0, 0.5)$. Otherwise it will be:
+\pause The conditional density of $Y$ given $X=0.5$ will be 0 when $y$ is outside $(0, 0.5)$. Otherwise it will be:
 $$\f{Y}(y) = \frac{2}{2\cdot 0.5} = 2$$
 
 \pause Unlike marginal densities, conditional densities can sometimes be visualized. They are just "slices" of the joint density.
